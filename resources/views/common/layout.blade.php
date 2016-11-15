@@ -5,15 +5,18 @@
         <title>{{$title}}</title>
         @if(!empty($metadesc))<meta name="description" content="{{$metadesc}}"/>@endif
         <link rel="stylesheet" href="/css/app.css" media="screen" title="Template">
-        @if(!empty($StylePath))<link rel="stylesheet" href="{{$StylePath}}" media="screen" title="Template">@endif
+        <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+        @if(!empty($specificHeader))
+            {!!$specificHeader!!}
+        @endif
     </head>
     <body>
         <nav>
-            include navbar
+            @include('common.navbar')
         </nav>
             @yield('content')
         <footer>
-            include footer
+            @include('common.footer')
         </footer>
     </body>
 </html>

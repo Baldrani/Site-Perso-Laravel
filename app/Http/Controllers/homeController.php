@@ -7,9 +7,10 @@ class homeController extends Controller
 {
     public function showIndex()
     {
+        $specificHeader = '<link rel="stylesheet" href="/css/home.css" media="screen" title="Template">';
 
         return view('home')
-            ->with('StylePath' , '/css/home.css')
+            ->with('specificHeader' , $specificHeader)
             ->withTitle('Maël Mayon');
     }
 }
