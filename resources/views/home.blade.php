@@ -7,7 +7,7 @@
             <h2>Qui suis-je ?</h2>
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 blockHome">
                 <p>
-                    Développeur en herbe découvrant encore les joie du Web
+                    Développeur en herbe découvrant encore les joie du Web yolo
                 </p>
                 <figure>
                     <img src="http://placehold.it/500x500" alt="Photo de moi">
@@ -39,7 +39,7 @@
             <h2>Blog</h2>
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 blockHome">
                 <p>
-                    Développeur en herbe découvrant encore les joie du Web
+                    Développeur en herbe découvrant encore les joie du Web test
                 </p>
                 <figure>
                     <img src="http://placehold.it/500x500" alt="Photo de moi">
