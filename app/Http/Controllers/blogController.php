@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 
 class blogController extends Controller
@@ -21,11 +22,27 @@ class blogController extends Controller
 
         $specificHeader = '<script src="/ckeditor/ckeditor.js"></script>';
 
-        // dd($article);
-
         return view('blog.edit')
         ->with('article',$article)
         ->with('specificHeader',$specificHeader)
-        ->withTitle('Edit Blog');
+        ->withTitle('Edit Article');
     }
+
+    public function showAddIndex($ajax=null)
+    {
+        if($ajax=='ajax'){
+
+            $title = Input::get('title');
+            // $content = \Input::get('content');
+
+            return $content;
+        }
+        $specificHeader = '<script src="/ckeditor/ckeditor.js"></script>';
+
+        return view('blog.add')
+        ->with('specificHeader',$specificHeader)
+        ->withTitle('Add Article');
+    }
+
+
 }
