@@ -15,5 +15,7 @@
 Route::get('/',                 'homeController@showIndex');
 
 Route::get('/blog',             'blogController@showIndex');
-Route::get('/blog/edit/{id}',        'blogController@showEditIndex');
+Route::get('/blog/edit/{id}',   'blogController@editArticle');
+Route::get('/blog/add',         'blogController@addArticle');
+
 // Route::get('/blog/{article}', 'blogController@showIndex');
