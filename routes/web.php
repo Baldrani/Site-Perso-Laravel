@@ -16,7 +16,10 @@ Route::get('/',                 'homeController@showIndex');
 
 Route::get('/blog',             'blogController@showIndex');
 Route::get('/blog/edit/{id}',   'blogController@showEditIndex');
-Route::get('/blog/add',         'blogController@showAddIndex');
-Route::post('/blog/add/{ajax}',  'blogController@showAddIndex');
+
+Route::get('/blog/add',         'blogController@showEditIndex');
+Route::post('/blog/add/{ajax}', 'blogController@showEditIndex');
+Route::get('/blog/edit/{id}',   'blogController@showEditIndex');
+
 
 // Route::get('/blog/{article}', 'blogController@showIndex');
