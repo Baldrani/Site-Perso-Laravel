@@ -19,31 +19,12 @@ class blogController extends Controller
         ->withTitle('Maël Mayon - Blog');
     }
 
-    public function showEditIndex($id=null,$ajax=null) //Fusionner les deux méthode et ne faire qu'un unique lien où l'on édite ou rajoute un article si l'article n'as pas d'id
+    public function showEditIndex($var = null)
     {
 
         $articles = DB::select('select title,id from blog');
 
-        $article = new \stdClass();
-
-        $article->id = "";
-        $article->title = "";
-        $article->content = "";
-        $article->date = "";
-
-        if($id != null){
-            $tmp = DB::select('select * from blog where id = '.$id);
-            $article->id = $tmp[0]->id;
-            $article->title = $tmp[0]->title;
-            $article->content = $tmp[0]->content;
-            $article->date = $tmp[0]->date;
-        }
-
-        $specificHeader = '<script src="/ckeditor/ckeditor.js"></script>';
-        $specificHeader .= '<script src="/prism/prism.js"></script>';
-        $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">"';
-
-        if($ajax=='ajax'){ //Ajoute ou Modifie
+        if($var == 'ajax'){ //Ajoute ou Modifie
 
             $title = Input::get('title');
             $content = Input::get('content');
@@ -61,6 +42,25 @@ class blogController extends Controller
 
             return $query;
         }
+
+        $article = new \stdClass();
+
+        $article->id = "";
+        $article->title = "";
+        $article->content = "";
+        $article->date = "";
+
+        if($var != null){
+            $tmp = DB::select('select * from blog where id = '.$var);
+            $article->id = $tmp[0]->id;
+            $article->title = $tmp[0]->title;
+            $article->content = $tmp[0]->content;
+            $article->date = $tmp[0]->date;
+        }
+
+        $specificHeader = '<script src="/ckeditor/ckeditor.js"></script>';
+        $specificHeader .= '<script src="/prism/prism.js"></script>';
+        $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">"';
 
         return view('blog.add')
         ->with('article',$article)

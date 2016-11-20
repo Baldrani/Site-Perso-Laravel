@@ -20,7 +20,7 @@
             });
             //Change la page
                 $('select').on('change',function(){
-                    document.location = "/blog/edit/" + $(this).find('option:selected').val();
+                    document.location = "/blog/article/" + $(this).find('option:selected').val();
                 })
             </script>
             <form type="post" action="">

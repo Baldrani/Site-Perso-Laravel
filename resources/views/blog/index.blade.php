@@ -29,7 +29,7 @@
 </section>
 <script>
     $('[type="button"]').on('click', function(){
-        document.location = '/blog/edit/' + $(this).attr('id');
+        document.location = '/blog/article/' + $(this).attr('id');
     })
 </script>
 @endsection
