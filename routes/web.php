@@ -18,5 +18,5 @@ Route::get('/blog',             'blogController@showIndex');
 Route::get('/blog/edit/{id}',   'blogController@showEditIndex');
 
 Route::get('/blog/article',         'blogController@showEditIndex');
+Route::post('/blog/article/{id}',   'blogController@showEditIndex');
 Route::get('/blog/article/{id}',    'blogController@showEditIndex');
-Route::post('/blog/article/{id}',    'blogController@showEditIndex');

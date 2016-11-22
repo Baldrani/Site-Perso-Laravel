@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xs-12">
             <select class="" name="">
-                <option></option>
+                <option value="0">+ Ajouter article</option>
                 @foreach($articles as $a)
                 <option value="{{$a->id}}">{{$a->title}}</option>
                 @endforeach
@@ -21,6 +21,7 @@
             //Change la page
                 $('select').on('change',function(){
                     document.location = "/blog/article/" + $(this).find('option:selected').val();
+                    if($(this).find('option:selected').val() == 0) document.location = "/blog/article/";
                 })
             </script>
             <form type="post" action="">
@@ -50,19 +51,24 @@
                         }
                     });
                     $.ajax({
-                        url: '/blog/add/ajax',
+                        url: '/blog/article/ajax',
                         type: 'POST',
                         data : {
+                            id : $('[name="id"]').val(),
+                            date : $('[name="date"]').val(),
                             title : $('#title').val(),
                             content :  $('iframe').contents().find('[contenteditable="true"]').html(),
                         },
                         dataType: 'JSON',
                         success: function (data){
-                            if(typeof(data === 'int')){
-                                //Do something
+                            if(data == "Posted"){
                                 alert('Article posté');
                                 document.location = "/blog";
-                            } else console.log('strange');
+                            }
+                            if(data == "Updated"){
+                                alert('Article update');
+                                document.location = "/blog";
+                            }
                         },
                         error: function(e) {
                             console.log(e.responseText);

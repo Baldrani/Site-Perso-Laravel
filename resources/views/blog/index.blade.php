@@ -3,7 +3,7 @@
 @section('content')
 <section class="container">
     <div class="">
-        <a href="/blog/add">
+        <a href="/blog/article">
             <button type="button" name="button">
                 Ajouter un article <i class="fa fa-plus" aria-hidden="true"></i>
             </button>

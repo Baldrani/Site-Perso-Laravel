@@ -10,12 +10,18 @@ class blogController extends Controller
 {
     public function showIndex()
     {
+
         $articles = DB::table('blog')
             ->orderBy('date','desc')
             ->get();
 
+
+        $specificHeader = '<script src="/prism/prism.js"></script>';
+        $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
+
         return view('blog.index')
         ->with('articles',$articles)
+        ->with('specificHeader',$specificHeader)
         ->withTitle('Maël Mayon - Blog');
     }
 
@@ -24,25 +30,31 @@ class blogController extends Controller
 
         $articles = DB::select('select title,id from blog');
 
-        if($var == 'ajax'){ //Ajoute ou Modifie
+        //Part Ajax
+        if($var == "ajax"){
 
+            $id = Input::get('id');
             $title = Input::get('title');
             $content = Input::get('content');
             $date = Input::get('date');
+
             if($date != null){
-                $query = DB::table('users')
-                    ->where('id', 1)
-                    ->update(['title' => $title,'content' => $content, $date => date("F j, Y \a\t g:ia")]);
-                return;
+
+                    $query = DB::table('blog')
+                    ->where('id', $id)
+                    ->update(['title' => $title,'content' => $content, 'date' => $date]);
+
+                    return "Updated";
             }
 
             $query = DB::table('blog')->insertGetId(
                 array('title' => $title, 'content' => $content)
             );
 
-            return $query;
+            return 'Posted';
         }
 
+        /* De là à */
         $article = new \stdClass();
 
         $article->id = "";
@@ -51,16 +63,16 @@ class blogController extends Controller
         $article->date = "";
 
         if($var != null){
-            $tmp = DB::select('select * from blog where id = '.$var);
+            $tmp = DB::select('select * from blog where id = ' . $var);
             $article->id = $tmp[0]->id;
             $article->title = $tmp[0]->title;
             $article->content = $tmp[0]->content;
             $article->date = $tmp[0]->date;
         }
 
+        /* ICIIII */
+
         $specificHeader = '<script src="/ckeditor/ckeditor.js"></script>';
-        $specificHeader .= '<script src="/prism/prism.js"></script>';
-        $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">"';
 
         return view('blog.add')
         ->with('article',$article)
