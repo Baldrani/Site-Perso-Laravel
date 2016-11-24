@@ -5790,4 +5790,7 @@ button {
   font-weight: 900;
   padding: 0 5px; }
 
+.cke_reset {
+  display: none; }
+
 /*# sourceMappingURL=app.css.map */

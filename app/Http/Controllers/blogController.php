@@ -30,28 +30,36 @@ class blogController extends Controller
 
         $articles = DB::select('select title,id from blog');
 
+        $id = Input::get('id');
+        $title = Input::get('title');
+        $content = Input::get('content');
+        $date = Input::get('date');
         //Part Ajax
         if($var == "ajax"){
 
-            $id = Input::get('id');
-            $title = Input::get('title');
-            $content = Input::get('content');
-            $date = Input::get('date');
 
             if($date != null){
 
                     $query = DB::table('blog')
                     ->where('id', $id)
-                    ->update(['title' => $title,'content' => $content, 'date' => $date]);
+                    ->update(['title' => $title,'content' => $content]);
 
-                    return "Updated";
+                    return json_encode("Updated");
             }
 
             $query = DB::table('blog')->insertGetId(
                 array('title' => $title, 'content' => $content)
             );
 
-            return 'Posted';
+            return  json_encode("Posted");
+        }
+
+        if($var == "delete"){
+            DB::table('blog')
+            ->where('id', $id)
+            ->delete();
+
+            return  json_encode("Delated");
         }
 
         /* De là à */
