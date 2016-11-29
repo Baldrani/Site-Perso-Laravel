@@ -11,10 +11,11 @@ class blogController extends Controller
     public function showIndex()
     {
 
-        $articles = DB::table('blog')
+        $articles = DB::table('article')
             ->orderBy('date','desc')
             ->get();
 
+        $category = 
 
         $specificHeader = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
@@ -28,7 +29,7 @@ class blogController extends Controller
     public function showEditIndex($var = null)
     {
 
-        $articles = DB::select('select title,id from blog');
+        $articles = DB::select('select title,id from article');
 
         $id = Input::get('id');
         $title = Input::get('title');
@@ -40,14 +41,14 @@ class blogController extends Controller
 
             if($date != null){
 
-                    $query = DB::table('blog')
+                    $query = DB::table('article')
                     ->where('id', $id)
                     ->update(['title' => $title,'content' => $content]);
 
                     return json_encode("Updated");
             }
 
-            $query = DB::table('blog')->insertGetId(
+            $query = DB::table('article')->insertGetId(
                 array('title' => $title, 'content' => $content)
             );
 
@@ -55,7 +56,7 @@ class blogController extends Controller
         }
 
         if($var == "delete"){
-            DB::table('blog')
+            DB::table('article')
             ->where('id', $id)
             ->delete();
 
@@ -71,7 +72,7 @@ class blogController extends Controller
         $article->date = "";
 
         if($var != null){
-            $tmp = DB::select('select * from blog where id = ' . $var);
+            $tmp = DB::select('select * from article where id = ' . $var);
             $article->id = $tmp[0]->id;
             $article->title = $tmp[0]->title;
             $article->content = $tmp[0]->content;
