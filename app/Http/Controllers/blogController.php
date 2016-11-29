@@ -15,7 +15,7 @@ class blogController extends Controller
             ->orderBy('date','desc')
             ->get();
 
-        $category = 
+        // $category = 
 
         $specificHeader = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
