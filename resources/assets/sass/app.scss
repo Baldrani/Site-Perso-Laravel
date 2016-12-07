@@ -10,7 +10,7 @@
 
 //Perso
 nav{
-    height: 50px; //A changer
+    height: 50px; //A changer ?
     ul{
         list-style: none;
         li{
@@ -39,4 +39,8 @@ button{
     text-transform: uppercase;
     font-weight: 900;
     padding: 0 5px;
+}
+
+.cke_reset {
+    display: none;
 }

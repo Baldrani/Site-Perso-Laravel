@@ -16,6 +16,7 @@ Route::get('/',                 'homeController@showIndex');
 
 Route::get('/blog',             'blogController@showIndex');
 Route::get('/blog/edit/{id}',   'blogController@showEditIndex');
-Route::get('/blog/add',         'blogController@showAddIndex');
-Route::post('/blog/add/{ajax}',  'blogController@showAddIndex');
-// Route::get('/blog/{article}', 'blogController@showIndex');
+
+Route::get('/blog/article',         'blogController@showEditIndex');
+Route::post('/blog/article/{id}',   'blogController@showEditIndex');
+Route::get('/blog/article/{id}',    'blogController@showEditIndex');
