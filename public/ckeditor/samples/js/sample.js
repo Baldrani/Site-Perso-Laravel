@@ -20,14 +20,6 @@ var initSample = ( function() {
 	return function() {
 		var editorElement = CKEDITOR.document.getById( 'editor' );
 
-		// :(((
-		if ( isBBCodeBuiltIn ) {
-			editorElement.setHtml(
-				'Hello world!\n\n' +
-				'I\'m an instance of [url=http://ckeditor.com]CKEditor[/url].'
-			);
-		}
-
 		// Depending on the wysiwygare plugin availability initialize classic or inline editor.
 		if ( wysiwygareaAvailable ) {
 			CKEDITOR.replace( 'editor' );
@@ -50,4 +42,3 @@ var initSample = ( function() {
 		return !!CKEDITOR.plugins.get( 'wysiwygarea' );
 	}
 } )();
-
