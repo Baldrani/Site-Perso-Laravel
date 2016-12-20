@@ -1,26 +1,31 @@
 section {
   height: 100vh;
-  position: relative; }
+  position: relative;
+}
 
 section:nth-of-type(1) {
   background-image: url(/images/fond.png);
   background-size: cover;
-  background-attachment: fixed; }
+  background-attachment: fixed;
+}
 
 section:nth-of-type(2) {
   background-image: url(/images/fond2.png);
   background-size: cover;
-  background-attachment: fixed; }
+  background-attachment: fixed;
+}
 
 section:nth-of-type(3) {
   background-image: url(/images/fond3.png);
   background-size: cover;
-  background-attachment: fixed; }
+  background-attachment: fixed;
+}
 
 section:nth-of-type(4) {
   background-image: url(/images/fond4.png);
   background-size: cover;
-  background-attachment: local; }
+  background-attachment: local;
+}
 
 .blockHome {
   background-color: #fff;
@@ -33,6 +38,7 @@ section:nth-of-type(4) {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+}
 
 /*# sourceMappingURL=home.css.map */
