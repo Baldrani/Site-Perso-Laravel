@@ -14,7 +14,13 @@
         <article class="col-xs-12">
             <header>
                 <h3>{{$article -> title}}</h3>
-                Publié le <time>{{date('j M o',strtotime($article -> created_at))}}</tetime>
+                <p>
+                    @if($article -> updated_at != null)
+                    Dernière mise à jour le <time>{{date('j M o',strtotime($article -> updated_at))}}</time><br>
+                    @endif
+                    Publié le <time pubtime="{{$article -> created_at}}">{{date('j M o',strtotime($article -> created_at))}}</time>
+                </p>
+
             </header>
             <section>
                 {!!$article -> content!!}

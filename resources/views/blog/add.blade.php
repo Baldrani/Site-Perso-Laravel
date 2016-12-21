@@ -28,13 +28,13 @@
             <form type="post" action="">
                 <label for="title">Title :</label><br>
                 <input type="text" name="title" id="title" style="width:100%;" value="{{$article->title}}"><br><br>
-                <label for="title">Date :</label><br>
-                <input type="text" name="date" id="date" style="width:100%;" value="{{$article->created_at}}"><br><br>
                 <label for="content">Content :</label><br>
                 <textarea name="content" id="editor" rows="10" cols="80">
                     {{$article->content}}
                 </textarea>
                 <input type="hidden" value="{{$article->id}}" name="id">
+                <input type="hidden" name="date" id="date" value="{{$article->created_at}}"><br><br>
+
                 <script>
                 CKEDITOR.replace( 'editor' );
                 $('[href="/css/app.css"]').remove()

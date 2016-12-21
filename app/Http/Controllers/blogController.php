@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Article;
 
 class blogController extends Controller
 {
@@ -28,7 +29,6 @@ class blogController extends Controller
     {
 
         $articles = DB::select('select title,id from articles');
-
         $id = Input::get('id');
         $title = Input::get('title');
         $content = Input::get('content');
@@ -60,25 +60,17 @@ class blogController extends Controller
             return  json_encode("Delated");
         }
 
-        /* De là à */
-        $article = new \stdClass();
-
-        $article->id = "";
-        $article->title = "";
-        $article->content = "";
-        $article->created_at = "";
-        $article->updated_at = "";
-
         if($var != null){
-            $tmp = DB::select('select * from articles where id = ' . $var);
-            $article->id = $tmp[0]->id;
-            $article->title = $tmp[0]->title;
-            $article->content = $tmp[0]->content;
-            $article->created_at = $tmp[0]->created_at;
-            $article->updated_at = $tmp[0]->updated_at;
+            $article = Article::where('id', $var)->first();
+        } else {
+            $article = new \stdClass();
+            $article->id = "";
+            $article->title = "";
+            $article->content = "";
+            $article->created_at = "";
+            $article->updated_at = "";
         }
 
-        /* ICIIII */
 
         $specificHeader = '<script src="/ckeditor/ckeditor.js"></script>';
 
