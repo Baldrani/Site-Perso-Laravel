@@ -33,10 +33,9 @@ class blogController extends Controller
         $title = Input::get('title');
         $content = Input::get('content');
         $date = Input::get('date');
+
         //Part Ajax
         if($var == "ajax"){
-
-
             if($date != null){
 
                     $query = DB::table('articles')
@@ -67,14 +66,16 @@ class blogController extends Controller
         $article->id = "";
         $article->title = "";
         $article->content = "";
-        $article->date = "";
+        $article->created_at = "";
+        $article->updated_at = "";
 
         if($var != null){
             $tmp = DB::select('select * from articles where id = ' . $var);
             $article->id = $tmp[0]->id;
             $article->title = $tmp[0]->title;
             $article->content = $tmp[0]->content;
-            $article->date = $tmp[0]->date;
+            $article->created_at = $tmp[0]->created_at;
+            $article->updated_at = $tmp[0]->updated_at;
         }
 
         /* ICIIII */

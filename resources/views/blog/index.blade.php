@@ -14,7 +14,7 @@
         <article class="col-xs-12">
             <header>
                 <h3>{{$article -> title}}</h3>
-                Publié le <time>{{date('j M o',strtotime($article -> date))}}</time>
+                Publié le <time>{{date('j M o',strtotime($article -> created_at))}}</tetime>
             </header>
             <section>
                 {!!$article -> content!!}

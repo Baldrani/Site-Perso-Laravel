@@ -29,15 +29,15 @@
                 <label for="title">Title :</label><br>
                 <input type="text" name="title" id="title" style="width:100%;" value="{{$article->title}}"><br><br>
                 <label for="title">Date :</label><br>
-                <input type="text" name="date" id="date" style="width:100%;" value="{{$article->date}}"><br><br>
+                <input type="text" name="date" id="date" style="width:100%;" value="{{$article->created_at}}"><br><br>
                 <label for="content">Content :</label><br>
-                <textarea name="content" id="content1" rows="10" cols="80">
+                <textarea name="content" id="editor" rows="10" cols="80">
                     {{$article->content}}
                 </textarea>
                 <input type="hidden" value="{{$article->id}}" name="id">
                 <script>
-                CKEDITOR.replace( 'content1' );
-                // $('[href="/css/app.css"]').remove()
+                CKEDITOR.replace( 'editor' );
+                $('[href="/css/app.css"]').remove()
                 </script>
             </form>
             <br>
@@ -69,7 +69,7 @@
             })
 
             $('.publish').on('click',function(){
-                if($('#title').val() == "" || $('iframe').contents().find('[contenteditable="true"]').html() == "<p><br></p>"){
+                if($('#title').val() == "" || CKEDITOR.instances.editor.getData() == ""){
                     alert('Titre ou Contenu manquant');
                 } else {
                     $.ajaxSetup({
@@ -84,7 +84,7 @@
                             id : $('[name="id"]').val(),
                             date : $('[name="date"]').val(),
                             title : $('#title').val(),
-                            content :  $('iframe').contents().find('[contenteditable="true"]').html(),
+                            content :  CKEDITOR.instances.editor.getData(),
                         },
                         dataType: 'JSON',
                         success: function (data){
