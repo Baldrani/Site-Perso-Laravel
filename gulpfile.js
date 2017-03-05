@@ -1,7 +1,5 @@
 const elixir = require('laravel-elixir');
 
-require('laravel-elixir-vue-2');
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -16,5 +14,12 @@ require('laravel-elixir-vue-2');
 elixir((mix) => {
     mix.sass('app.scss')
        .sass('home.scss')
-       .webpack('app.js');
+       .scripts('app.js');
+
+     mix.version(['css/app.css','js/app.js' ]);
+
+     mix.browserSync({
+        proxy: 'maelmayon.app'
+    });
+
 });

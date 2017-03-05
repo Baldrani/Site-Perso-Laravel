@@ -1,23 +1,14 @@
 @extends('common.layout')
 
 @section('content')
-<section class="container-fluid">
+<section class="container-fluid" id="home">
     <div class="container">
         <div class="row">
             <h2>Qui suis-je ?</h2>
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 blockHome">
-                <p>
-                    Développeur en herbe découvrant encore les joies du Web
-                </p>
-                <figure>
-                    <img src="http://placehold.it/500x500" alt="Photo de moi">
-                    <figcaption>Votre programmeur fétishe</figcaption>
-                </figure>
-            </div>
         </div>
     </div>
 </section>
-<section class="container-fluid">
+<section class="container-fluid" id="whoami">
     <div class="container">
         <div class="row">
             <h2>Compétences</h2>
@@ -33,7 +24,7 @@
         </div>
     </div>
 </section>
-<section class="container-fluid">
+<section class="container-fluid" id="projects">
     <div class="container">
         <div class="row">
             <h2>Blog</h2>
