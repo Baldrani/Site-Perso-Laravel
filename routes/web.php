@@ -21,4 +21,11 @@ Route::get('/blog/article',         'blogController@showEditIndex');
 Route::post('/blog/article/{id}',   'blogController@showEditIndex');
 Route::get('/blog/article/{id}',    'blogController@showEditIndex');
 
-Route::get('/calendar', 'homeController@showCalendar');
+
+Route::get('/phpinfo', function(){
+    phpinfo();
+});
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index');

@@ -12,9 +12,8 @@ class blogController extends Controller
     public function showIndex()
     {
 
-        $articles = DB::table('articles')
-            ->orderBy('created_at','desc')
-            ->get();
+        $articles = Article::all()    ->sortByDesc('created_at');
+
 
         $specificHeader = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
