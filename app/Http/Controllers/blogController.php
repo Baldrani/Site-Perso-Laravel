@@ -6,45 +6,54 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\Category;
 
 class blogController extends Controller
 {
     public function showIndex()
     {
 
-        $articles = Article::all()    ->sortByDesc('created_at');
+        $articles = Article::all()->sortByDesc('created_at');
+        $categories = Category::all()->sortByDesc('name');
 
 
         $specificHeader = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
 
         return view('blog.index')
-        ->with('articles',$articles)
-        ->with('specificHeader',$specificHeader)
-        ->withTitle('Maël Mayon - Blog');
+            ->withArticles($articles)
+            ->withCategories($categories)
+            ->with('specificHeader',$specificHeader)
+            ->withTitle('Maël Mayon - Blog');
     }
 
     public function showEditIndex($var = null)
     {
+        $articles = Article::all();
+        $categories = Category::all()->sortBy('name');
 
-        $articles = DB::select('select title,id from articles');
         $id = Input::get('id');
         $title = Input::get('title');
         $content = Input::get('content');
         $date = Input::get('date');
+        $category = Input::get('category');
+
+        $article = Article::find($id);
 
         //Part Ajax
         if($var == "ajax"){
             if($date != null){
+                // $article = Article::all();
+                $query = DB::table('articles')
+                ->where('id', $id)
+                ->update(['title' => $title,'content' => $content]);
 
-                    $query = DB::table('articles')
-                    ->where('id', $id)
-                    ->update(['title' => $title,'content' => $content]);
+                $article = Article::find($id)->categories()->attach($category);
 
-                    return json_encode("Updated");
+                return json_encode("Updated");
             }
 
-            $query = DB::table('articles')->insertGetId(
+            Article::insertGetId(
                 array('title' => $title, 'content' => $content)
             );
 
@@ -52,15 +61,12 @@ class blogController extends Controller
         }
 
         if($var == "delete"){
-            DB::table('articles')
-            ->where('id', $id)
-            ->delete();
-
+            Article::destroy($id);
             return  json_encode("Delated");
         }
 
         if($var != null){
-            $article = Article::where('id', $var)->first();
+            $article = Article::find($var);
         } else {
             $article = new \stdClass();
             $article->id = "";
@@ -74,12 +80,11 @@ class blogController extends Controller
         $specificHeader = '<script src="/ckeditor/ckeditor.js"></script>';
 
         return view('blog.add')
-        ->with('article',$article)
-        ->with('articles',$articles)
+        ->withCategories($categories)
+        ->withArticle($article)
+        ->withArticles($articles)
         ->with('specificHeader',$specificHeader)
         ->withTitle('Edit Article');
     }
-
-
 
 }
