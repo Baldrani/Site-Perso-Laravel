@@ -1,110 +1,17 @@
 @extends('common.layout')
 
 @section('content')
-<section class="container">
+<div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <select>
-                <option value="0">+ Ajouter article</option>
-                @foreach($articles as $a)
-                <option value="{{$a->id}}">{{$a->title}}</option>
-                @endforeach
-            </select>
-            <script type="text/javascript">
-            $(document).ready(function() {
-                $('select option').each(function(){
-                    if($(this).val() == window.location.pathname.split('/')[window.location.pathname.split('/').length - 1] ){
-                        $(this).prop('selected',true);
-                    }
-                });
-            });
-            //Change la page
-            $('select').on('change',function(){
-                document.location = "/blog/article/" + $(this).find('option:selected').val();
-                if($(this).find('option:selected').val() == 0) document.location = "/blog/article/";
-            })
-            </script>
-            <br><br>
-            <form type="post" action="">
-                <label for="title">Title :</label><br>
-                <input type="text" name="title" id="title" style="width:100%;" value="{{$article->title}}"><br><br>
-                <label for="content">Content :</label><br>
-                <textarea name="content" id="editor" rows="10" cols="80">
-                    {{$article->content}}
-                </textarea>
-                <input type="hidden" value="{{$article->id}}" name="id">
-                <input type="hidden" name="date" id="date" value="{{$article->created_at}}"><br><br>
-
-                <script>
-                CKEDITOR.replace( 'editor' );
-                $('[href="/css/app.css"]').remove()
-                </script>
+            <form method="post" action="/blog/{{$article->id}}">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
+                <input type="text" name="title" class="form-control" value="{{$article->title or ''}}" />
+                <textarea name="content" class="form-control">{{$article->content or ''}}</textarea>
+                <button type="submit">Envoyer</button>
             </form>
-            <br>
-            <button type="button" class="publish" style="margin:auto;display:block;background-color: rgb(0, 140, 14);color: #fff;">Publier</button> <br>
-            <button type="button" class="erase" style="margin:auto;display:block;background-color: rgb(185, 12, 12);color: #fff;">Supprimer</button>
-            <br><br>
-            <script type="text/javascript">
-            $('.erase').on('click',function(){
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': '<?php echo csrf_token(); ?>'
-                    }
-                });
-                $.ajax({
-                    url: '/blog/article/delete',
-                    type: 'POST',
-                    data : {
-                        id : $('[name="id"]').val(),
-                    },
-                    dataType: 'JSON',
-                    success: function (data){
-                        alert('Article supprimé')
-                        window.location = "/blog";
-                    },
-                    error: function(e) {
-                        console.log(e.responseText);
-                    }
-                });
-            })
-
-            $('.publish').on('click',function(){
-                if($('#title').val() == "" || CKEDITOR.instances.editor.getData() == ""){
-                    alert('Titre ou Contenu manquant');
-                } else {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': '<?php echo csrf_token(); ?>'
-                        }
-                    });
-                    $.ajax({
-                        url: '/blog/article/ajax',
-                        type: 'POST',
-                        data : {
-                            id : $('[name="id"]').val(),
-                            date : $('[name="date"]').val(),
-                            title : $('#title').val(),
-                            content :  CKEDITOR.instances.editor.getData(),
-                        },
-                        dataType: 'JSON',
-                        success: function (data){
-                            if(data == "Posted"){
-                                alert('Article posté');
-                                window.location = "/blog";
-                            }
-                            if(data == "Updated"){
-                                alert('Article mis à jour');
-                                window.location = "/blog";
-                            }
-                        },
-                        error: function(e) {
-                            console.log(e.responseText);
-                        }
-                    });
-                }
-            })
-            </script>
         </div>
     </div>
-</section>
+</div>
 @endsection

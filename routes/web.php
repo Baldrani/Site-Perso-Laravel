@@ -11,21 +11,7 @@
 |
 */
 
-
 Route::get('/',                 'homeController@showIndex');
-
-Route::get('/blog',             'blogController@showIndex');
-Route::get('/blog/edit/{id}',   'blogController@showEditIndex');
-
-Route::get('/blog/article',         'blogController@showEditIndex');
-Route::post('/blog/article/{id}',   'blogController@showEditIndex');
-Route::get('/blog/article/{id}',    'blogController@showEditIndex');
-
-
-Route::get('/phpinfo', function(){
-    phpinfo();
-});
+Route::resource('/blog',        'ArticleController');
 
 Auth::routes();
-
-// Route::get('/home', 'HomeController@index');

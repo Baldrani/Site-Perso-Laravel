@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -13,7 +15,17 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::all()->sortByDesc('created_at');
+        $categories = Category::all()->sortByDesc('name');
+
+        $specificHeader  = '<script src="/prism/prism.js"></script>';
+        $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
+
+        return view('blog.index')
+            ->withArticles($articles)
+            ->withCategories($categories)
+            ->with('specificHeader', $specificHeader)
+            ->withTitle('Maël Mayon - Blog');
     }
 
     /**
@@ -23,7 +35,12 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $specificHeader = '<script src="/prism/prism.js"></script>';
+        $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
+
+        return view('blog.add')
+            ->with('specificHeader', $specificHeader)
+            ->withTitle('Maël Mayon - Blog');
     }
 
     /**
@@ -34,7 +51,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = Article::updateOrCreate(
+        [
+            'title'=>$request->title,
+            'content'=>$request->content,
+        ]);
+
+        return redirect('/blog');
     }
 
     /**
@@ -45,7 +68,15 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::find($id);
+
+        $specificHeader  = '<script src="/prism/prism.js"></script>';
+        $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
+
+        return view('blog.article')
+            ->withArticle($article)
+            ->with('specificHeader', $specificHeader)
+            ->withTitle('Maël Mayon - Blog');
     }
 
     /**
@@ -56,7 +87,18 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $articles = Article::all()->sortByDesc('created_at');
+        $article = Article::find($id);
+
+
+        $specificHeader = '<script src="/prism/prism.js"></script>';
+        $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
+
+        return view('blog.add')
+            ->withArticle($article)
+            ->withArticles($articles)
+            ->with('specificHeader', $specificHeader)
+            ->withTitle('Maël Mayon - Blog');
     }
 
     /**
@@ -68,7 +110,13 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::find($id)
+            ->update([
+            'title'=>$request->title,
+            'content'=>$request->content,
+            ]);
+
+        return redirect('/blog');
     }
 
     /**
