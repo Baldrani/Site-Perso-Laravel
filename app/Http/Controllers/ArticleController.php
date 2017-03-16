@@ -35,10 +35,16 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        $categories = Category::all()->sortBy('name');
+
+        $postRoute = route('blog.store');
         $specificHeader = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
 
+
         return view('blog.add')
+            ->withCategories($categories)
+            ->with('postRoute',$postRoute)
             ->with('specificHeader', $specificHeader)
             ->withTitle('Maël Mayon - Blog');
     }
@@ -87,16 +93,24 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $articles = Article::all()->sortByDesc('created_at');
+        //TODO Ne pas afficher les catégories déjà selectionnées ~~~ Afficher les categories aux quel il appartient
+
         $article = Article::find($id);
+        $articles = Article::all()->sortByDesc('created_at');
+        $categories = Category::all();
+        $categoriesIsIn = $article->categories();
+        dd($categoriesIsIn); // Not working ?
 
-
+        $postRoute = route('blog.update', $article->id);
         $specificHeader = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
 
         return view('blog.add')
             ->withArticle($article)
             ->withArticles($articles)
+            ->withCategories($categories)
+            ->with('categoriesIsIn', $categoriesIsIn)
+            ->with('postRoute', $postRoute)
             ->with('specificHeader', $specificHeader)
             ->withTitle('Maël Mayon - Blog');
     }

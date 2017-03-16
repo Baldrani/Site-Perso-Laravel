@@ -12,6 +12,10 @@
 */
 
 Route::get('/',                 'homeController@showIndex');
-Route::resource('/blog',        'ArticleController');
+
+Route::resource('/blog',            'ArticleController');
+
+Route::get('/add/category',         'AjaxController@addCategory');
+Route::get('/remove/category',      'AjaxController@removeCategory');
 
 Auth::routes();
