@@ -26,18 +26,15 @@
                 <section>
                     {!!$article -> content!!}
                 </section>
-                <button type="button" name="button" id="{{$article -> id}}">
-                    Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </button>
+                <a href="/blog/{{$article->id}}/edit">                    
+                    <button type="button" name="button" id="{{$article -> id}}">
+                        Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </button>
+                </a>
             </article>
         </div>
     </a>
     @endforeach
     <br>
 </section>
-<script>
-    $('[type="button"]').on('click', function(){
-        document.location = '/blog/article/' + $(this).attr('id');
-    })
-</script>
 @endsection
