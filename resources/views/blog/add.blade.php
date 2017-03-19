@@ -6,6 +6,7 @@
         <div class="col-xs-12">
             <form method="post" action="{{$postRoute}}">
                 {{ csrf_field() }}
+                <input type="hidden" name="articleId" value="{{ $article->id or '' }}">
                 <input type="hidden" name="_method" value="{{ isset($article) ? 'PUT' : 'POST' }}">
                 <input type="text" name="title" class="form-control" value="{{ $article->title or '' }}" />
                 <textarea name="content" class="form-control">{{ $article->content or ''}}</textarea>
@@ -30,7 +31,7 @@
                         url : '/add/category',
                         type : 'GET',
                         dataType : 'json',
-                        data : {'id' : $('option:selected').val() },
+                        data : {'id' : $('option:selected').val(), 'articleId' : $('[name="articleId"]').val() },
                         success : function(data){
                             console.log(data);
                             $('form').append('<button type="button" data-id="'+$('option:selected').val()+'">'+$('option:selected').text()+' <i class="fa fa-times" aria-hidden="true"></i></button>')
@@ -43,14 +44,16 @@
                     });
                 })
                 $(document).on('click','[type="button"]',function(){
+                    var id = $(this).data('id');
+                    var text = $(this).text();
                     $.ajax({
                         url : '/remove/category',
                         type : 'GET',
                         dataType : 'json',
-                        data : {'id' : $('option:selected').val() },
+                        data : {'id' : id, 'articleId' : $('[name="articleId"]').val()},
                         success : function(data){
                             console.log(data);
-                            //Append option back ~~~ Retier lien
+                            $('select').append('<option value="'+id+'">'+text+'</option>')
                         },
                         error : function(resultat, statut, erreur){
                             console.error(resultat.responseText)

@@ -98,8 +98,9 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $articles = Article::all()->sortByDesc('created_at');
         $categories = Category::all();
+
         $categoriesIsIn = $article->categories();
-        dd($categoriesIsIn); // Not working ?
+        // dd($categoriesIsIn); // Not working ?
 
         $postRoute = route('blog.update', $article->id);
         $specificHeader = '<script src="/prism/prism.js"></script>';

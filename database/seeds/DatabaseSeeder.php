@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         DB::table('categories')->insert([
-            ['name' => 'informatique'],
-            ['name' => 'javascript'],
-            ['name' => 'test']
+            ['name' => 'Informatique'],
+            ['name' => 'Javascript'],
+            ['name' => 'Test']
         ]);
     }
 }
