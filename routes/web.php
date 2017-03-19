@@ -19,3 +19,4 @@ Route::get('/add/category',         'AjaxController@addCategory');
 Route::get('/remove/category',      'AjaxController@removeCategory');
 
 Auth::routes();
+//TODO Clean /register

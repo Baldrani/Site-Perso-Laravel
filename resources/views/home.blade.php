@@ -1,4 +1,4 @@
-@extends('common.layout')
+@extends('layouts.app')
 
 @section('content')
 <section class="container-fluid" id="home">

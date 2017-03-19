@@ -1,4 +1,4 @@
-@extends('common.layout')
+@extends('layouts.app')
 
 @section('content')
 {{$article->title}}

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticleCategoryTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateArticleCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_category', function(Blueprint $table)
-        {
+        Schema::create('comments',function(Blueprint $table){
+            $table->increments('id');
+            $table->text('content');
             $table->integer('article_id')->unsigned()->index();
             $table->foreign('article_id')->references('id')->on('articles');
-            $table->integer('category_id')->unsigned()->index();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('name');
         });
     }
 
@@ -29,6 +31,6 @@ class CreateArticleCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('article_category');
+        Schema::drop('comments');
     }
 }

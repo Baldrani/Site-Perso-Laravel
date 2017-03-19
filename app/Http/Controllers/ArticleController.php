@@ -4,10 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Comments;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    // /**
+    //  * Create a new controller instance.
+    //  *
+    //  * @return void
+    //  */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -79,8 +91,13 @@ class ArticleController extends Controller
         $specificHeader  = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
 
+        $comments = $article->comments();
+
+        // dd($comments);
+
         return view('blog.article')
             ->withArticle($article)
+            ->withComments($comments)
             ->with('specificHeader', $specificHeader)
             ->withTitle('Maël Mayon - Blog');
     }
@@ -93,14 +110,14 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //TODO Ne pas afficher les catégories déjà selectionnées ~~~ Afficher les categories aux quel il appartient
+        //TODO Ne pas afficher les catégories déjà selectionnées ~~~ Afficher les categories aux quel il appartient ~~~ Fix belongsToMany !!!
 
         $article = Article::find($id);
         $articles = Article::all()->sortByDesc('created_at');
         $categories = Category::all();
 
         $categoriesIsIn = $article->categories();
-        // dd($categoriesIsIn); // Not working ?
+        // dd($categoriesIsIn);
 
         $postRoute = route('blog.update', $article->id);
         $specificHeader = '<script src="/prism/prism.js"></script>';

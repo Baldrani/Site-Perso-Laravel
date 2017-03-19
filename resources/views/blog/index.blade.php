@@ -1,4 +1,4 @@
-@extends('common.layout')
+@extends('layouts.app')
 
 @section('content')
 <section class="container">
@@ -26,7 +26,7 @@
                 <section>
                     {!!$article -> content!!}
                 </section>
-                <a href="/blog/{{$article->id}}/edit">                    
+                <a href="/blog/{{$article->id}}/edit">
                     <button type="button" name="button" id="{{$article -> id}}">
                         Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </button>

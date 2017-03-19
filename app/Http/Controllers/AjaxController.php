@@ -9,24 +9,24 @@ class AjaxController extends Controller
 {
         public function addCategory(Request $request)
         {
-                //Id de l'article qui va être posté
-                if(isset($request->articleId)){
+                //TODO Gérer le cas où l'article n'est pas crée, il n'y a pas de foreign key encore.
+                if(!empty($request->articleId)){
                         $id = $request->articleId;
                 } else {
+                        //TODO Gérer le cas 0 article
                         $id = Article::all()->last()->id;
                         $id++;
                 }
 
-                if(!\DB::table('article_category')->where('category_id', '=', $request->id)->where('article_id', '=', $id)->exists()){
-                       \DB::table('article_category')->insert(['category_id' => $request->id, 'article_id' => $id]);
+                if(!\DB::table('article_category')->where('article_id', '=', $id)->where('category_id', '=', $request->id)->exists()){
+                       \DB::table('article_category')->insert(['article_id' => $id, 'category_id' => $request->id]);
                 }
 
-                return response()->json('Ajouté');
+                return response()->json($request->articleId);
         }
 
         public function removeCategory(Request $request)
         {
-                //Id de l'article qui va être posté
                 if(isset($request->articleId)){
                         $id = $request->articleId;
                 } else {
@@ -34,7 +34,7 @@ class AjaxController extends Controller
                         $id++;
                 }
 
-                \DB::table('article_category')->where('category_id', '=', $request->id)->where('article_id', '=', $id)->delete();
+                \DB::table('article_category')->where('article_id', '=', $id)->where('category_id', '=', $request->id)->delete();
 
                 return response()->json('Supprimé');
         }
