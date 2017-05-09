@@ -52,11 +52,31 @@
         <div class="row">
             <h2>Me contacter</h2>
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 blockHome">
-                <form action="/admin/contact" method="post">
-
+                <form>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="email">Votre mail</label>
+                        <input type="email" class="form-control" id="email"  placeholder="Entrez votre mail">
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="name">Votre nom</label>
+                        <input type="text" class="form-control" id="name" placeholder="Entrez votre nom">
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label for="message">Votre message</label>
+                        <textarea class="form-control" id="message" placeholder="Inscrivez votre message" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Envoyer</button>
+                    Si je suis injoignable vous pourriez me trouver ici :
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10504.510723377623!2d2.3343453!3d48.8367032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb118bc844f2f417a!2sLes+Grands+Voisins!5e0!3m2!1sfr!2sfr!4v1494367996644" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </form>
             </div>
         </div>
     </div>
 </section>
+<script>
+$( "form" ).on( "submit", function( event ) {
+  event.preventDefault();
+  console.log( $( this ).serialize() );
+});
+</script>
 @endsection('content')
