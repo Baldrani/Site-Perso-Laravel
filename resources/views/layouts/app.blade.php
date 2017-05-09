@@ -10,6 +10,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="stylesheet" href="{{ elixir('css/app.css') }}" media="screen" title="Template">
+        <link rel="stylesheet" href="{{ elixir('css/blog.css') }}" media="screen" title="Template">
         <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
         @if(!empty($specificHeader))
             {!!$specificHeader!!}

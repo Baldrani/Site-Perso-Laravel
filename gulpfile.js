@@ -15,12 +15,7 @@ require('laravel-elixir-webpack');
 elixir((mix) => {
     mix.sass('app.scss')
        .sass('home.scss')
+       .sass('blog.scss')
        .webpack('app.js');
-
-     mix.version(['css/app.css','js/app.js' ]);
-
-     mix.browserSync({
-        proxy: 'maelmayon.app'
-    });
 
 });

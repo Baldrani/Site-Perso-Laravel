@@ -27,8 +27,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all()->sortByDesc('created_at');
+        $articles = Article::all()->sortByDesc('updated_at');
         $categories = Category::all()->sortByDesc('name');
+        $lastArticles = Article::all()->sortByDesc('created_at')->take(5);
+
 
         $specificHeader  = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
@@ -36,6 +38,7 @@ class ArticleController extends Controller
         return view('blog.index')
             ->withArticles($articles)
             ->withCategories($categories)
+            ->with('lastArticles', $lastArticles)
             ->with('specificHeader', $specificHeader)
             ->withTitle('Maël Mayon - Blog');
     }

@@ -9,7 +9,7 @@
                 <input type="hidden" name="articleId" value="{{ $article->id or '' }}">
                 <input type="hidden" name="_method" value="{{ isset($article) ? 'PUT' : 'POST' }}">
                 <input type="text" name="title" class="form-control" value="{{ $article->title or '' }}" />
-                <textarea name="content" class="form-control">{{ $article->content or ''}}</textarea>
+                <textarea name="content" class="form-control" id="cntent">{{ $article->content or ''}}</textarea>
                 <button type="submit">Envoyer</button>
             </form>
             <div class="categories">
@@ -25,7 +25,21 @@
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
+            <script src="/ckeditor/ckeditor.js"></script>
                 <script>
+                CKEDITOR.replace( 'content' );
+
+                $.fn.modal.Constructor.prototype.enforceFocus = function() {
+                  modal_this = this
+                  $(document).on('focusin.modal', function (e) {
+                    if (modal_this.$element[0] !== e.target && !modal_this.$element.has(e.target).length
+                    && !$(e.target.parentNode).hasClass('cke_dialog_ui_input_select')
+                    && !$(e.target.parentNode).hasClass('cke_dialog_ui_input_text')) {
+                      modal_this.$element.focus()
+                    }
+                  })
+                };
+                
                 $('[name="categories"]').on('change',function(){
                     $.ajax({
                         url : '/add/category',
