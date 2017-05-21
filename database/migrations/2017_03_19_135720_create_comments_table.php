@@ -20,7 +20,6 @@ class CreateCommentsTable extends Migration
             $table->foreign('article_id')->references('id')->on('articles');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name');
         });
     }
 

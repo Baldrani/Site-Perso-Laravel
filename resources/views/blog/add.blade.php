@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+    $('[title="Template"]').remove();
+</script>
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -39,7 +42,7 @@
                     }
                   })
                 };
-                
+
                 $('[name="categories"]').on('change',function(){
                     $.ajax({
                         url : '/add/category',

@@ -18,5 +18,9 @@ Route::resource('/blog',            'ArticleController');
 Route::get('/add/category',         'AjaxController@addCategory');
 Route::get('/remove/category',      'AjaxController@removeCategory');
 
+Route::get('/category/{id}',       'BlogController@showCategory');
+
+Route::post('/postcomment', 'AjaxController@postComment');
+
 Auth::routes();
 //TODO Clean /register

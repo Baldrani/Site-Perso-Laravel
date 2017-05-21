@@ -43,15 +43,7 @@
             @endforeach
         </section>
         <aside class="col-xs-12 col-sm-5">
-            <div>
-                <h2>Derniers articles postés :</h2>
-
-                @foreach($lastArticles as $lastArticle)
-                    <a href="{{$lastArticle->id}}">
-                        <h4>{{$lastArticle->title}}</h4>
-                    </a>
-                @endforeach
-            </div>
+            @include('components.lastArticle')    
         </aside>
     </div>
 </div>

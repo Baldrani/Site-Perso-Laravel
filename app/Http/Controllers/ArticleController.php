@@ -94,9 +94,8 @@ class ArticleController extends Controller
         $specificHeader  = '<script src="/prism/prism.js"></script>';
         $specificHeader .= '<link rel="stylesheet" href="/prism/prism.css" type="text/css">';
 
-        $comments = $article->comments();
-
-        // dd($comments);
+        $comments = $article->comments()->get();
+        // dd($comments{0}->user);
 
         return view('blog.article')
             ->withArticle($article)

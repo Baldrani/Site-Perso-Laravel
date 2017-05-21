@@ -17,5 +17,11 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Javascript'],
             ['name' => 'Test']
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Welldon',
+            'email' => 'mael.mayon@free.fr',
+            'password' => bcrypt('bonjour'),
+        ]);
     }
 }
