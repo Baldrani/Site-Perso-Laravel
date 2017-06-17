@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function showCategory($id){
-        $category = Category::find($id);
+    public function showCategory($name){
+        $category = Category::where('name',$name)->first();
         $articles = $category->articles;
         return view('blog.category')
             ->withArticles($articles);

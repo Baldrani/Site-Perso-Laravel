@@ -16,18 +16,18 @@ require('./bootstrap');
 /* Global Js Function */
 $(document).ready(function() {
     //Scroll to bottom
-    var $root = $('html, body');
-    $('nav a').click(function() {
-        var href = $(this).attr('href');
-        hash = href.split('#');
-        if(hash.length == 2){
-            $root.animate({
-                scrollTop: $('#'+hash[1]).offset().top
-            }, 500, function () {
-                window.location.hash = hash[1];
-            });
-        }
-    });
+    // var $root = $('html, body');
+    // $('nav a').click(function() {
+    //     var href = $(this).attr('href');
+    //     hash = href.split('#');
+    //     if(hash.length == 2){
+    //         $root.animate({
+    //             scrollTop: $('#'+hash[1]).offset().top
+    //         }, 500, function () {
+    //             window.location.hash = hash[1];
+    //         }); 
+    //     }
+    // });
 
     $(document).scroll(function() {
       var y = $(this).scrollTop();

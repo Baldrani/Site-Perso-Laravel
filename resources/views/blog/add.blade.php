@@ -11,7 +11,7 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="articleId" value="{{ $article->id or '' }}">
                 <input type="hidden" name="_method" value="{{ isset($article) ? 'PUT' : 'POST' }}">
-                <input type="text" name="title" class="form-control" value="{{ $article->title or '' }}" />
+                Titre : <input type="text" name="title" class="form-control" value="{{ $article->title or '' }}" />
                 <textarea name="content" class="form-control" id="cntent">{{ $article->content or ''}}</textarea>
                 <button type="submit">Envoyer</button>
             </form>

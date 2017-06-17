@@ -1,9 +1,41 @@
 
 
+@import "https://fonts.googleapis.com/css?family=Acme";
+
+
 .cke_reset {
     display: none;
 }
 
 h2{
     font-size: 20px;
+}
+
+#home{
+    article{
+        border: 2px solid grey;
+        margin: 10px 0;
+        padding: 10px;
+        header{
+            margin-top: -15px;
+            time{
+                display: inline-block;
+                font-size: 25px;
+                font-weight: 900;
+                padding-right: 20px;
+            }
+        }
+        section{
+            height: 70px;
+            transition: 1s ease all;
+            overflow:hidden;
+            text-align: justify;
+        }
+        .fa-ellipsis-h{
+            text-align: center;
+            width: 100%;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    }
 }

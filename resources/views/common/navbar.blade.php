@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top" id="navbar">
+<nav class="navbar navbar-default navbar-static-top" id="navbar" style="z-index: 999;">
     <div class="container">
         <div class="navbar-header">
 
@@ -29,7 +29,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Connexion</a></li>
+                    <li><a data-target="#myModal" data-purpose="modal">Connexion</a></li>
+                    @include('components.modalLogin')
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

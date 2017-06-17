@@ -15,7 +15,8 @@
             {!!$specificHeader!!}
         @endif
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="{{ elixir('/js/app.js') }}"></script>
+        <script src="/js/app.js"></script>
+        <!-- <script src="{{ elixir('/js/app.js') }}"></script> -->
         <!-- Scripts -->
         <script>
             window.Laravel = <?php echo json_encode([

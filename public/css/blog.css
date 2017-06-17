@@ -1,1 +1,42 @@
-.cke_reset{display:none}h2{font-size:20px}
+@import "https://fonts.googleapis.com/css?family=Acme";
+.cke_reset {
+  display: none;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+#home article {
+  border: 2px solid grey;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+#home article header {
+  margin-top: -15px;
+}
+
+#home article header time {
+  display: inline-block;
+  font-size: 25px;
+  font-weight: 900;
+  padding-right: 20px;
+}
+
+#home article section {
+  height: 70px;
+  -webkit-transition: 1s ease all;
+  transition: 1s ease all;
+  overflow: hidden;
+  text-align: justify;
+}
+
+#home article .fa-ellipsis-h {
+  text-align: center;
+  width: 100%;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=blog.css.map */

@@ -15,10 +15,11 @@
         </section>
         <footer>
             @foreach($article->categories as $category)
-            <a href="/category/{{$category->id}}">{{$category->name}}</a>
+            <a href="/category/{{$category->name}}">{{$category->name}}</a>
             @endforeach
         </footer>
     </article>
+    {{--
     <section class="col-xs-12 col-sm-offset-2 col-sm-8">
         <h3>Commentaires : </h3>
         @if(Auth::user())
@@ -56,5 +57,6 @@
         <p>{{$comment->content}}</p>
         @endforeach
     </section>
+    --}}
 </section>
 @endsection
