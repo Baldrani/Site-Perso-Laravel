@@ -14,7 +14,7 @@
     <div class="row">
         <br>
         <br>
-        <section class="col-xs-12 col-sm-8">
+        <section class="col-xs-12 col-md-8">
             @foreach($articles as $article)
                     <article>
                         <header>
@@ -26,6 +26,9 @@
                             {!!$article -> content!!}
                         </section>
                         <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        <script>
+                        $(this).parent()
+                        </script>
                         @if(Auth::user())
                         <a href="/blog/{{$article->id}}/edit">
                             <button type="button" name="button" id="{{$article -> id}}">
@@ -33,17 +36,35 @@
                             </button>
                         </a>
                         @endif
-
                     </article>
             @endforeach
         </section>
-        <aside class="col-xs-12 col-sm-4">
+        <script>
+            [...document.querySelectorAll('article')].forEach(a => {
+                let width = 0;
+                [...a.querySelectorAll('p')].forEach(p => {
+                    width += p.clientHeight;
+                });
+                width < 70 ? a.querySelector('.fa-ellipsis-h').remove() : false;
+            });
+        </script>
+        <aside class="col-xs-12 col-md-4">
             {{-- @include('components.lastArticle') --}}
         </aside>
         <script>
             $('.fa-ellipsis-h').click(function(){
-                $(this).prev().css('height','auto');
-                $(this).remove();
+                if($(this).hasClass('clicked')){
+                    $(this).addClass('fa-ellipsis-h');
+                    $(this).removeClass('fa-minus-square-o');
+                    $(this).removeClass('clicked');
+                    $(this).prev().css('height','70');
+                } else {
+                    $(this).removeClass('fa-ellipsis-h');
+                    $(this).addClass('fa-minus-square-o');
+                    $(this).addClass('clicked');
+                    $(this).prev().css('height','auto');
+                }
+                // $(this).remove();
             });
         </script>
     </div>

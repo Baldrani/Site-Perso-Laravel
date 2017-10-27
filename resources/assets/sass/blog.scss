@@ -30,8 +30,12 @@ h2{
             transition: 1s ease all;
             overflow:hidden;
             text-align: justify;
+            img{
+                display: block;
+                margin: auto; 
+            }
         }
-        .fa-ellipsis-h{
+        .fa-ellipsis-h, .fa-minus-square-o{
             text-align: center;
             width: 100%;
             font-size: 40px;

@@ -11,6 +11,7 @@ class BlogController extends Controller
         $category = Category::where('name',$name)->first();
         $articles = $category->articles;
         return view('blog.category')
-            ->withArticles($articles);
+            ->withArticles($articles)
+            ->withCategory($name);
     }
 }

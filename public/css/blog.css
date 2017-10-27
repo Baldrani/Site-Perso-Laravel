@@ -32,7 +32,12 @@ h2 {
   text-align: justify;
 }
 
-#home article .fa-ellipsis-h {
+#home article section img {
+  display: block;
+  margin: auto;
+}
+
+#home article .fa-ellipsis-h, #home article .fa-minus-square-o {
   text-align: center;
   width: 100%;
   font-size: 40px;

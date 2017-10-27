@@ -14,8 +14,9 @@
             <p>{!!$article->content!!}</p>
         </section>
         <footer>
-            @foreach($article->categories as $category)
-            <a href="/category/{{$category->name}}">{{$category->name}}</a>
+            @foreach($article->categories as $i=>$category)
+                {{$i != count($article->categories) && $i != 0 ? '|' : '' }}
+                <a href="/category/{{$category->name}}">{{$category->name}}</a>
             @endforeach
         </footer>
     </article>

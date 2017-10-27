@@ -16,12 +16,12 @@
 Route::get('/',                     'homeController@showIndex');
 
 Route::resource('/blog',            'ArticleController');
+Route::get('/category/{name}',      'BlogController@showCategory');
 
 Route::get('/add/category',         'AjaxController@addCategory');
 Route::get('/remove/category',      'AjaxController@removeCategory');
 
-Route::get('/projects/{name}',      'ProjectController@showProjects');
-Route::get('/category/{name}',       'BlogController@showCategory');
+Route::get('/projects/{name}',       'ProjectController@showProjects');
 
 Route::post('/postcomment',         'AjaxController@postComment');
 
